@@ -23,6 +23,7 @@ body {
     color: #222;
     background-color: #fff;
   }
+  .hidden { display: none; }
   .button {
     display: block;
     text-decoration: none;
@@ -30,18 +31,18 @@ body {
     font-size: 1.5em;
     color: #222;
     background-color: #eee;
-  }
-  .button.start {
-    color: #fff;
-    background-color: #09f;
-  }
-  .button.finish {
-    color: #fff;
-    background-color: #0f9;
     position: absolute;
     bottom: 0;
     left: 0;
     right: 0;
+    &.start, &.next {
+      color: #fff;
+      background-color: #09f;
+    }
+    &.finish {
+      color: #fff;
+      background-color: #0f9;
+    }
   }
   &.warning {
     color: #fff;

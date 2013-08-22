@@ -1,13 +1,31 @@
 Rampage =
-  initialize: ->
-    timer = new Timer "timer", Date.now()/1000 + 5, "down"
-    timer.run()
-    $('.button.finish').on 'click', (e) ->
+  initialize: (time, direction) ->
+    start_button = $ '.button.start'
+    finish_button = $ '.button.finish'
+    console.log 'initializing!'
+    timer = new Timer "timer", time, direction
+    start_button.show()
+    start_button.on 'click', (e) ->
       e.preventDefault()
-      Geolocation.get_location()
-  overtime: ->
-    $('body').addClass 'warning'
-    $('#overtime').show()
+      timer.run()
+      start_button.hide()
+      finish_button.show()
+      finish_button.on 'click', (e) ->
+        e.preventDefault()
+        time = timer.stop()
+        finish_button.hide()
+        $('#stage-finished').show()
+        $('.button.next').show()
+        # send the time and geo to the server
+        Geolocation.get_location()
+    timer
+  overtime: (is_overtime=true) ->
+    if is_overtime
+      $('body').addClass 'warning'
+      $('#overtime').show()
+    else
+      $('body').removeClass 'warning'
+      $('#overtime').hide()
   show_install: ->
     $('#application').hide()
     $('#install').show()
