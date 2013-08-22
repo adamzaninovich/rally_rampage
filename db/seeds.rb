@@ -7,20 +7,27 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 Team.delete_all
-team1 = {
+teams = [{
   name: 'Dangerzone',
   driver: 'Nathaniel Barnes',
   navigator: 'Holly Barnes',
   vehicle: '2001 Pontiac Aztek',
   pax: ''
-}
-team2 = {
+},
+{
   name: 'Strazzerinovich',
   driver: 'Adam Zaninovich',
   navigator: 'Elicia Strazzeri',
   vehicle: '2011 Ford Mustang V6 Coupe',
   pax: ''
-}
-[team1,team2].each do |team|
+},
+{
+  name: "Let's Get Frosty",
+  driver: 'Tyler Clemens',
+  navigator: 'Lauren Oas',
+  vehicle: '2006 Ford Focus ZX4',
+  pax: ''
+}]
+teams.each do |team|
   Team.create! team
 end
