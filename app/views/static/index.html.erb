@@ -1,9 +1,10 @@
-<%= render partial:'shared/iphone_check' %>
-
 <h1>Rally Rampage!</h1>
-<h2 id="timer">loading timer...</h2>
 
-<script type="text/javascript" charset="utf-8">
-  timer = new Timer("timer");
-  timer.run();
-</script>
+<h2 id="timer">loading timer...</h2>
+<div id="overtime" style="display:none;">
+  <h1>Warning!</h1>
+  <p>You are now over the ideal time of 1h 35m! Please proceed to the next checkpoint at your earliest convienience.</p>
+</div>
+
+<a href="#" class="button finish">Finish</a>
+

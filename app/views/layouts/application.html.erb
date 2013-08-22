@@ -16,15 +16,11 @@
   <meta name="viewport" content="user-scalable=no">
   <meta name="viewport" content="width=device-width">
 
-  <link rel="apple-touch-icon-precomposed" href="images/icons/54.png?2">
-  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/icons/72.png?2">
-  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/icons/114.png?2">
-  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/icons/144.png?2">
+  <link rel="apple-touch-icon-precomposed" href="images/icons/54.png">
+  <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images/icons/72.png">
+  <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images/icons/114.png">
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="images/icons/144.png">
 
-  <link rel="apple-touch-startup-image" href="images/startup-ipad-landscape-retina.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape) and (min-device-pixel-ratio: 2)">
-  <link rel="apple-touch-startup-image" href="images/startup-ipad-portrait-retina.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait) and (min-device-pixel-ratio: 2)">
-  <link rel="apple-touch-startup-image" href="images/startup-ipad-landscape.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:landscape)">
-  <link rel="apple-touch-startup-image" href="images/startup-ipad-portrait.png" media="screen and (min-device-width: 481px) and (max-device-width: 1024px) and (orientation:portrait)">
   <link rel="apple-touch-startup-image" href="images/startup-568h-retina.png" media="screen and (device-height: 568px)">
   <link rel="apple-touch-startup-image" href="images/startup-retina.png" media="screen and (device-height: 480px) and (min-device-pixel-ratio: 2)">
   <link rel="apple-touch-startup-image" href="images/startup.png" media="screen and (device-height: 480px)">
@@ -36,7 +32,26 @@
 </head>
 <body>
 
-<%= yield %>
+  <div id="application">
+    <%= yield %>
+  </div>
+
+  <div id="install" style="display:none">
+    <div class="top">
+      <h2>Install <span class="bold">Rally Rampage</span></h2>
+      <h3>Download the app for your iPhone today.</h3>
+    </div>
+
+    <%#<div class="chrome_instructions">%>
+      <%#To download Rally Rampage, open it in Safari and "Add to Home Screen".%>
+    <%#</div>%>
+
+    <div class="instructions">
+      Tap the icon below to "<span class="bold">Add to Home Screen</span>"
+    </div>
+  </div>
+
+  <%= render partial:'shared/iphone_check' %>
 
 </body>
 </html>
