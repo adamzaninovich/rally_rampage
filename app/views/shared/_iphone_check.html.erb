@@ -1,13 +1,11 @@
-<%#<script type="text/javascript" charset="utf-8">%>
-  <%#if (window.navigator.userAgent.indexOf('iPhone') != -1) {%>
-    <%#if (window.navigator.standalone == true) {%>
-      <%#// Initialize your app%>
-      <%#alert("it's an iPhone!");%>
+<script type="text/javascript" charset="utf-8">
+  <%#if (Rampage.is_iphone()) {%>
+    <%#if (Rampage.is_installed()) {%>
+      Rampage.initialize();
     <%#}else{%>
-      <%#// Display a message asking to add the app to the Home Screen%>
-      <%#document.location.href = '/static/install';%>
+      <%#Rampage.show_install();%>
     <%#}%>
   <%#}else{%>
-    <%#document.location.href = '/static/install';%>
+    <%#Rampage.show_install();%>
   <%#}%>
-<%#</script>%>
+</script>
