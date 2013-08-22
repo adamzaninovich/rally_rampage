@@ -6,7 +6,51 @@ body {
   text-align: center;
   font-family: 'Helvetica Neue', helvetica, sans;
   font-weight: 200;
+  color: #222;
+  padding: 0;
+  margin: 0;
   h1,h2 {
     font-weight: 200;
+  }
+  h1 {
+    font-size: 1.5em;
+  }
+  h2 {
+    font-size: 2.5em;
+  }
+  #timer {
+    padding: 10px 0;
+    color: #222;
+    background-color: #fff;
+  }
+  .button {
+    display: block;
+    text-decoration: none;
+    padding: 30px 0;
+    font-size: 1.5em;
+    color: #222;
+    background-color: #eee;
+  }
+  .button.start {
+    color: #fff;
+    background-color: #09f;
+  }
+  .button.finish {
+    color: #fff;
+    background-color: #0f9;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+  &.warning {
+    color: #fff;
+    background-color: #b00;
+    .button.finish {
+      color: #222;
+      background-color: #fff;
+    }
+  }
+  #overtime {
   }
 }
