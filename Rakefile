@@ -3,4 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-RalleyRampage::Application.load_tasks
+RallyRampage::Application.load_tasks

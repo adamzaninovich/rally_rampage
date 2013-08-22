@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-RalleyRampage::Application.config.secret_key_base = '2766cc3df0b703aeca02257a7bc2de63ef650d9b4144b820074a92ccb405e00f3cf377ccb182db72d8b32ee3f61ed264cca2069f72c68e791a8cc30b72c45547'
+RallyRampage::Application.config.secret_key_base = '2766cc3df0b703aeca02257a7bc2de63ef650d9b4144b820074a92ccb405e00f3cf377ccb182db72d8b32ee3f61ed264cca2069f72c68e791a8cc30b72c45547'
