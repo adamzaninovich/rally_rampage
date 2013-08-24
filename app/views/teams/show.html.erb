@@ -1,0 +1,8 @@
+<h2>You have selected</h2>
+<h1><%= @team.name %></h1>
+<h3><strong>Vehicle:</strong>   <%= @team.vehicle %></h3>
+<h3><strong>Navigator:</strong> <%= @team.navigator %></h3>
+<h3><strong>Driver:</strong>    <%= @team.driver %></h3>
+
+<%= link_to "Oops, that's not my team!", logout_path, class: 'button' %>
+<%= link_to "Sounds good let's go!", sessions_path(team_id: @team.id), method: :post, class: 'button next' %>

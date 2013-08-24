@@ -27,7 +27,7 @@ class Timer
       if @direction is "down"
         elapsed_time = @time - current_time
         if elapsed_time < 0
-          @el.html "- " + @format_time(new Date -elapsed_time + 28801000)
+          @el.html "- " + @format_time(new Date -elapsed_time 28801000)
           Rampage.overtime()
         else
           @el.html @format_time(new Date elapsed_time + 28800000)

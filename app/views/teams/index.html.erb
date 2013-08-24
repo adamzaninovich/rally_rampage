@@ -1,5 +1,7 @@
 <h2>Select Your Team</h2>
 <ul id="teams">
-  <%= render @teams %>
+  <% @teams.sort_by(&:name).each do |team| %>
+    <li><%= link_to team.name, team, class: 'team button' %></li>
+  <% end %>
 </ul>
 
