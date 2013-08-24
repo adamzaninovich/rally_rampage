@@ -4,6 +4,6 @@ class StagesController < ApplicationController
   end
 
   def current
-    @stage = Stage.first
+    @stage = Stage.current
   end
 end
