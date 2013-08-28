@@ -15,6 +15,7 @@ class ApplicationController < ActionController::Base
       nil
     end
   end
+  helper_method :current_team
 
   def logout
     session[:team_id] = nil
