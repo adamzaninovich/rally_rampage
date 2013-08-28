@@ -1,22 +1,30 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
 
+puts "Creating Stages"
 Stage.delete_all
 stages = [
-  (1.hour  + 35.minutes),
-  nil,
-  (3.hours + 30.minutes),
-  (1.hour  + 15.minutes)
+  {
+    stage_type: 'ideal_time',
+    ideal_time: (1.hour  + 35.minutes),
+  },
+  {
+    stage_type: 'odometer',
+  },
+  {
+    stage_type: 'speed',
+    pax_percent: 17.0
+  },
+  {
+    stage_type: 'ideal_time',
+    ideal_time: (1.hour  + 15.minutes)
+  }
 ]
-stages.each_with_index do |stage_time, index|
-  Stage.create! order_number: index + 1, ideal_time: stage_time
+stages.each_with_index do |attrs, index|
+  Stage.create! attrs.merge(order_number: index + 1)
 end
 
+puts "Creating Teams"
 Team.delete_all
 teams = [{
   name: 'Dangerzone',
@@ -62,4 +70,12 @@ teams = [{
 }]
 teams.each do |team|
   Team.create! team
+end
+
+puts "Creating Stage Results"
+StageResult.delete_all
+Team.all.each do |team|
+  Stage.all.each do |stage|
+    team.stage_results.create stage: stage
+  end
 end

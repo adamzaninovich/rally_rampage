@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 20130828161600) do
     t.integer  "order_number"
     t.integer  "ideal_time"
     t.float    "pax_percent"
-    t.string   "type"
+    t.string   "stage_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

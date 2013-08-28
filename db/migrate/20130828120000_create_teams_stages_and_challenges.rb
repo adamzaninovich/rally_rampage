@@ -14,7 +14,7 @@ class CreateTeamsStagesAndChallenges < ActiveRecord::Migration
       t.integer     :order_number
       t.integer     :ideal_time
       t.float       :pax_percent
-      t.string      :type
+      t.string      :stage_type
 
       t.timestamps
     end
