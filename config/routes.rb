@@ -2,13 +2,9 @@ RallyRampage::Application.routes.draw do
   resources :teams, only: [:index, :show]
 
   resources :stages, only: [:index, :show] do
-    member do
-      post 'done'
-    end
-    collection do
-      get 'current'
-    end
+    post 'done'
   end
+  get 'stages/current' => 'stages#current', as: :current_stage
 
   resources :sessions, only: [:create, :destroy]
   get 'logout', to: 'sessions#destroy', as: :logout
