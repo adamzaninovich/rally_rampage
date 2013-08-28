@@ -6,6 +6,17 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+Stage.delete_all
+stages = [
+  (1.hour  + 35.minutes),
+  nil,
+  (3.hours + 30.minutes),
+  (1.hour  + 15.minutes)
+]
+stages.each_with_index do |stage_time, index|
+  Stage.create! order_number: index + 1, ideal_time: stage_time
+end
+
 Team.delete_all
 teams = [{
   name: 'Dangerzone',

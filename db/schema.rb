@@ -11,42 +11,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130822151134) do
+ActiveRecord::Schema.define(version: 20130828161600) do
+
+  create_table "challenge_results", force: true do |t|
+    t.integer  "team_id"
+    t.integer  "challenge_id"
+    t.integer  "placement"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "challenges", force: true do |t|
-    t.string   "name"
     t.integer  "order_number"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "stage_results", force: true do |t|
+    t.integer  "team_id"
+    t.integer  "stage_id"
+    t.integer  "placement"
+    t.datetime "start_time"
+    t.datetime "finish_time"
+    t.integer  "start_odometer"
+    t.integer  "finish_odometer"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "stages", force: true do |t|
     t.integer  "order_number"
-    t.time     "ideal_time"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "team_challenges", force: true do |t|
-    t.integer  "rank"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "team_stages", force: true do |t|
-    t.integer  "rank"
+    t.integer  "ideal_time"
+    t.float    "pax_percent"
+    t.string   "type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "teams", force: true do |t|
     t.string   "name"
-    t.float    "pax"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "driver"
     t.string   "navigator"
     t.string   "vehicle"
+    t.float    "pax"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end
