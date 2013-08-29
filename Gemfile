@@ -43,3 +43,11 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+group :test, :development do
+  gem "rspec-rails", ">= 2.6.1" # Needs to be in Dev group for rake tasks
+  gem "capybara", ">= 1.0.0"
+  gem 'factory_girl_rails'
+  gem "launchy", ">= 2.0.5"
+  gem 'simplecov', :require => false
+end
