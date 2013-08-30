@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130828161600) do
+ActiveRecord::Schema.define(version: 20130830230724) do
 
   create_table "challenge_results", force: true do |t|
     t.integer  "team_id"
@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(version: 20130828161600) do
     t.integer  "finish_odometer"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "workflow_state"
   end
 
   create_table "stages", force: true do |t|
