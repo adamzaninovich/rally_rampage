@@ -40,4 +40,17 @@ describe StageResult do
       end
     end
   end
+
+  describe '#finish' do
+    context "when the stage is odometer" do
+      before do
+        stage.update_attributes stage_type: 'odometer'
+        subject.start! 11223
+      end
+      it "saves the finish odometer" do
+        subject.finish! 11224
+        subject.finish_odometer.should == 11224
+      end
+    end
+  end
 end
