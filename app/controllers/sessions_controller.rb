@@ -1,8 +1,7 @@
 class SessionsController < ApplicationController
   def create
-    binding.pry
     login params[:team_id]
-    redirect_to current_stages_path
+    redirect_to current_stage_path
   end
 
   def destroy
