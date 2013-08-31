@@ -79,7 +79,7 @@ describe Stage do
       team = Team.create!
       stage = Stage.create! stage_type: 'speed'
       StageResult.create! team: team, stage: stage, start_time: start_time
-      stage.start_time_for_team(team).should == start_time
+      stage.start_time_for_team(team).to_i.should == start_time.to_i
     end
   end
 
@@ -91,7 +91,7 @@ describe Stage do
       result = StageResult.create! stage: stage, team: team
       result.start!
       result.update_attributes! start_time: start_time
-      stage.ideal_end_time_for_team(team).should == start_time + 1.hour
+      stage.ideal_end_time_for_team(team).to_i.should == start_time.to_i + 1.hour
     end
   end
 
