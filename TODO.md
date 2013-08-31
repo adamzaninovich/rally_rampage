@@ -9,6 +9,7 @@
 
 ## Future
 
+* implement a pin code for team login
 * results resource (probably doesn't need AR)
   - /results/:team_id
     * shows results of one team
