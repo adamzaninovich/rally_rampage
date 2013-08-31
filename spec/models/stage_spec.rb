@@ -62,7 +62,9 @@ describe Stage do
       start_time = Time.now
       team = Team.create!
       stage = Stage.create! stage_type: 'ideal_time', ideal_time: 1.hour
-      StageResult.create! stage: stage, team: team, start_time: start_time
+      result = StageResult.create! stage: stage, team: team
+      result.start!
+      result.update_attributes! start_time: start_time
       stage.to_json_for_team(team).should == {
         stage_type: 'ideal_time',
         start_time: start_time.to_i,
@@ -86,7 +88,9 @@ describe Stage do
       start_time = Time.now
       team = Team.create!
       stage = Stage.create! stage_type: 'ideal_time', ideal_time: 1.hour
-      StageResult.create! stage: stage, team: team, start_time: start_time
+      result = StageResult.create! stage: stage, team: team
+      result.start!
+      result.update_attributes! start_time: start_time
       stage.ideal_end_time_for_team(team).should == start_time + 1.hour
     end
   end
