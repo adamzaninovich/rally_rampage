@@ -1,9 +1,9 @@
 Rampage =
-  initialize: (time, direction) ->
+  initialize: (timer_id) ->
     start_button = $ '.button.start'
     finish_button = $ '.button.finish'
     console.log 'initializing!'
-    timer = new Timer "timer", time, direction
+    timer = new Timer timer_id
     start_button.show()
     start_button.on 'click', (e) ->
       e.preventDefault()

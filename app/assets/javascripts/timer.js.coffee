@@ -1,8 +1,14 @@
 class Timer
-  constructor: (id_of_element, time, direction)->
+  constructor: (id_of_element)->
     @el = $ "##{id_of_element}"
-    @time = new Date time*1000
-    @direction = direction
+    stage = @el.data 'stage'
+    @stage_type = stage.stage_type
+    if @stage_type is 'ideal_time'
+      @direction = 'down'
+      @time = new Date stage.end_time*1000
+    else
+      @direction = 'up'
+      @time = new Date stage.start_time*1000
     @paused = false
   run: -> setTimeout @display_time, 1000
   stop: ->
