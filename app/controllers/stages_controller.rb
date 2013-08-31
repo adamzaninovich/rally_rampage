@@ -10,11 +10,15 @@ class StagesController < ApplicationController
 
   # GET /stages/current
   def current
-    @stage = Stage.current
-    if @stage
-      render :show
+    if current_team
+      @stage = Stage.current
+      if @stage
+        render :show
+      else
+        redirect_to results_path # todo: needs a results model and controller, no AR needed probably
+      end
     else
-      redirect_to results_path # todo: needs a results model and controller, no AR needed probably
+      redirect_to teams_path
     end
   end
 end
