@@ -2,7 +2,6 @@
 
 ## Immediate
 
-* finish flow of picking team and moving into the first stage
 * start stage button
 * finish stage button
 * flow into next stage
@@ -21,3 +20,6 @@
     * POST endpoint for geo coordinates
     * can take an array of coords
 
+# Done
+
+* finish flow of picking team and moving into the first stage
