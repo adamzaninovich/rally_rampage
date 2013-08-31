@@ -24,7 +24,11 @@ class StageResult < ActiveRecord::Base
     end
   end
 
-  def finish odometer
-    update_attributes! finish_odometer: odometer
+  def finish odometer=nil
+    if odometer.present?
+      update_attributes! finish_odometer: odometer
+    else
+      update_attributes! finish_time: Time.now
+    end
   end
 end

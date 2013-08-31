@@ -15,10 +15,6 @@ class Stage < ActiveRecord::Base
   #end
 
   def finished?
-    if %w[ideal_time, speed].include? stage_type
-      stage_results.any? && !stage_results.map(&:finish_time).include?(nil)
-    else
-      true
-    end
+    stage_results.any? && !stage_results.map(&:finished?).include?(false)
   end
 end

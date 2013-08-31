@@ -25,32 +25,32 @@ describe StageResult do
   end
 
   describe '#start' do
-    context "when the stage is odometer" do
-      before { stage.update_attributes stage_type: 'odometer' }
-      it "saves the start odometer" do
-        subject.start! 11223
-        subject.start_odometer.should == 11223
-      end
+    it "saves the start odometer when the stage is odometer" do
+      stage.update_attributes stage_type: 'odometer'
+      result.start! 11223
+      result.start_odometer.should == 11223
     end
-    context "when the stage is timed" do
-      before { stage.update_attributes stage_type: 'ideal_time' }
-      it "saves the start time" do
-        subject.start!
-        subject.start_time.should be_within(1.second).of Time.now
-      end
+
+    it "saves the start time when the stage is timed" do
+      stage.update_attributes stage_type: 'ideal_time'
+      result.start!
+      result.start_time.should be_within(1.second).of Time.now
     end
   end
 
   describe '#finish' do
-    context "when the stage is odometer" do
-      before do
-        stage.update_attributes stage_type: 'odometer'
-        subject.start! 11223
-      end
-      it "saves the finish odometer" do
-        subject.finish! 11224
-        subject.finish_odometer.should == 11224
-      end
+    it "saves the finish odometer when the stage is odometer" do
+      stage.update_attributes stage_type: 'odometer'
+      result.start! 11223
+      result.finish! 11224
+      result.finish_odometer.should == 11224
+    end
+
+    it "saves the finish time when the stage is timed" do
+      stage.update_attributes stage_type: 'speed'
+      result.start!
+      result.finish!
+      result.finish_time.should be_within(1.second).of Time.now
     end
   end
 end
