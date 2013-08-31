@@ -1,12 +1,23 @@
+<header>
+  <h2>Stage <%= @stage.order_number %></h2>
+  <h3><%= @stage.stage_type.humanize %></h3>
+</header>
+
+<div>
+  This stage has an ideal time of <%= @stage.render_ideal_time %>.
+</div>
+
 <div id="stage-finished" style="display:none;">
   <h2>Congrats!</h2>
   <p>You have completed the stage with a time of</p>
 </div>
-<h2 id="timer">Press Start to Begin the Stage</h2>
+
+<h3 id="timer">Press Start to Begin the Stage</h3>
 <div id="overtime" style="display:none;">
   <h1>Warning!</h1>
   <p>You are now over the ideal time of 1h 35m! Please proceed to the next checkpoint at your earliest convienience.</p>
 </div>
+
 <a href="#" class="static button start" style="display:none;">Start</a>
 <a href="#" class="static button finish" style="display:none;">Finish</a>
 <a href="#" class="static button next" style="display:none;">Next Stage</a>
