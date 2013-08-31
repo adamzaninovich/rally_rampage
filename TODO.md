@@ -2,7 +2,8 @@
 
 ## Immediate
 
-* start stage button
+* figure out how to construct js objects before stage has been started
+* start stage button (ajax request + update timer)
 * finish stage button
 * flow into next stage
 
