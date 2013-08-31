@@ -46,6 +46,10 @@ gem 'workflow', '~> 1.0.0'
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+group :development do
+  gem 'pry-rails'
+end
+
 group :test, :development do
   gem "rspec-rails", ">= 2.6.1" # Needs to be in Dev group for rake tasks
   gem "capybara", ">= 1.0.0"
