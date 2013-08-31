@@ -12,7 +12,7 @@
   <p>You have completed the stage with a time of</p>
 </div>
 
-<h3 id="timer" data-stage="<%= @stage.to_json %>">Press Start to Begin the Stage</h3>
+<h3 id="timer" data-stage="<%= @stage.to_json_for_team current_team %>">Press Start to Begin the Stage</h3>
 
 <div id="overtime" style="display:none;">
   <h1>Warning!</h1>

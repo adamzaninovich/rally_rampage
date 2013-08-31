@@ -28,7 +28,9 @@ class Stage < ActiveRecord::Base
   end
 
   def ideal_end_time_for_team team
-    start_time_for_team(team) + ideal_time
+    if results_for_team(team).in_progress?
+      start_time_for_team(team) + ideal_time
+    end
   end
 
   def results_for_team team
