@@ -15,22 +15,36 @@ class Stage < ActiveRecord::Base
     stage_results.any? && !stage_results.map(&:finished?).include?(false)
   end
 
-  def render_ideal_time
-    render_time ideal_time
+  def to_json_for_team team
+    data = {}
+    data[:stage_type] = stage_type
+    data[:start_time] = start_time_for_team(team).to_i
+    data[:end_time]   = ideal_end_time_for_team(team).to_i if ideal_time?
+    data.to_json
   end
 
-  private
-  def render_time seconds
-    hours = seconds / 3600
-    seconds -= hours * 3600
-
-    minutes = seconds / 60
-    seconds -= minutes * 60
-
-    time = []
-    time << pluralize(hours, 'hour')
-    time << pluralize(minutes, 'minute')
-    time << pluralize(seconds, 'second') if seconds < 0
-    time.join ", "
+  def start_time_for_team team
+    results_for_team(team).start_time
   end
+
+  def ideal_end_time_for_team team
+    start_time_for_team(team) + ideal_time
+  end
+
+  def results_for_team team
+    stage_results.where(team: team).first
+  end
+
+  def ideal_time?
+    stage_type == 'ideal_time'
+  end
+
+  def speed?
+    stage_type == 'speed'
+  end
+
+  def odometer?
+    stage_type == 'odometer'
+  end
+
 end

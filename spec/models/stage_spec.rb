@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Stage do
 
   describe '#finished?' do
-    let(:result) { StageResult.create stage: stage, team: Team.create }
-    let(:stage) { Stage.create stage_type: 'speed' }
+    let(:result) { StageResult.create! stage: stage, team: Team.create! }
+    let(:stage) { Stage.create! stage_type: 'speed' }
     subject { stage }
 
     context "when all stage_results are finished" do
@@ -28,8 +28,8 @@ describe Stage do
     let!(:stages) do
       team = Team.create
       %w[ideal_time odometer].each_with_index.map do |stage_type, i|
-        stage = Stage.create stage_type: stage_type, order_number: i+1
-        StageResult.create stage: stage, team: team
+        stage = Stage.create! stage_type: stage_type, order_number: i+1
+        StageResult.create! stage: stage, team: team
         stage
       end
     end
@@ -53,6 +53,90 @@ describe Stage do
           stage.stage_results.first.finish!
         end
         Stage.current.should be_nil
+      end
+    end
+  end
+
+  describe '#to_json_for_team' do
+    it "returns the correct json when stage is ideal_time" do
+      start_time = Time.now
+      team = Team.create!
+      stage = Stage.create! stage_type: 'ideal_time', ideal_time: 1.hour
+      StageResult.create! stage: stage, team: team, start_time: start_time
+      stage.to_json_for_team(team).should == {
+        stage_type: 'ideal_time',
+        start_time: start_time.to_i,
+        end_time: start_time.to_i + 1.hour
+      }.to_json
+    end
+  end
+
+  describe '#start_time_for_team' do
+    it "returns the correct start time" do
+      start_time = Time.now
+      team = Team.create!
+      stage = Stage.create! stage_type: 'speed'
+      StageResult.create! team: team, stage: stage, start_time: start_time
+      stage.start_time_for_team(team).should == start_time
+    end
+  end
+
+  describe '#ideal_end_time_for_team' do
+    it "returns the correct end_time" do
+      start_time = Time.now
+      team = Team.create!
+      stage = Stage.create! stage_type: 'ideal_time', ideal_time: 1.hour
+      StageResult.create! stage: stage, team: team, start_time: start_time
+      stage.ideal_end_time_for_team(team).should == start_time + 1.hour
+    end
+  end
+
+  describe '#results_for_team' do
+    it "finds the correct result set" do
+      team = Team.create!
+      stage = Stage.create! stage_type: 'speed'
+      results = StageResult.create! team: team, stage: stage
+      stage.results_for_team(team).should == results
+    end
+  end
+
+  describe "stage type predicates" do
+    let(:ideal_time_stage)  { Stage.new stage_type: 'ideal_time' }
+    let(:speed_stage)       { Stage.new stage_type: 'speed' }
+    let(:odometer_stage)    { Stage.new stage_type: 'odometer' }
+    describe '#ideal_time?' do
+      it "is true when it is an ideal time stage" do
+        ideal_time_stage.should be_ideal_time
+      end
+      it "is false when it is a speed stage" do
+        speed_stage.should_not be_ideal_time
+      end
+      it "is false when it is a odometer stage" do
+        odometer_stage.should_not be_ideal_time
+      end
+    end
+
+    describe '#speed?' do
+      it "is true when it is a speed stage" do
+        speed_stage.should be_speed
+      end
+      it "is false when it is an ideal time stage" do
+        ideal_time_stage.should_not be_speed
+      end
+      it "is false when it is a odometer stage" do
+        odometer_stage.should_not be_speed
+      end
+    end
+
+    describe 'odometer?' do
+      it "is true when it is a odometer stage" do
+        odometer_stage.should be_odometer
+      end
+      it "is false when it is an ideal time stage" do
+        ideal_time_stage.should_not be_odometer
+      end
+      it "is false when it is a speed stage" do
+        speed_stage.should_not be_odometer
       end
     end
   end
