@@ -1,8 +1,8 @@
 require 'spec_helper'
 
 describe Stage do
-  let!(:result) { StageResult.create stage: stage, team: Team.create }
-  let!(:stage) { Stage.create stage_type: 'speed' }
+  let(:result) { StageResult.create stage: stage, team: Team.create }
+  let(:stage) { Stage.create stage_type: 'speed' }
   subject { stage }
 
   describe '#finished?' do
