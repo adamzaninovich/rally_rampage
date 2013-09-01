@@ -6,14 +6,14 @@ Stage.delete_all
 stages = [
   {
     stage_type: 'ideal_time',
-    ideal_time: (1.hour  + 35.minutes),
-  },
-  {
-    stage_type: 'odometer',
+    ideal_time: (1.minute),
   },
   {
     stage_type: 'speed',
     pax_percent: 17.0
+  },
+  {
+    stage_type: 'odometer',
   },
   {
     stage_type: 'ideal_time',
