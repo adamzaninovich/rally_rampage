@@ -6,19 +6,31 @@
   * acceptance criteria
     1. js objects correctly initialize an unstarted stage
     2. pressing the start button sends an ajax request to the server
-    3. a callback is received with the start time and end time
+    3. a callback is received with the start time and ideal end time
     4. the timer is started
+    5. the finish button is shown
 
 * as a rally team, I want to be able to open the app mid-stage
   * acceptance criteria
     1. js objects correctly initialize a started stage
     2. page is served with start and end times
-    2. timer is correct
+    3. timer is correct
+    4. the finish button is shown
 
-* figure out how to construct js objects before stage has been started
-* start stage button (ajax request + update timer)
-* finish stage button
-* flow into next stage
+* as a rally team, I want to be able to finish a stage
+  * acceptance criteria
+    1. pressing the finish button sends an ajax request to the server
+    2. a callback is received with end time
+    3. stage results are displayed
+    4. the next stage button is shown
+
+* as a rally team, after finishing the current stage, I want to be able to see the next stage before it has been started
+  * maybe ??? not sure about this one.
+  * how should it work when one team has finished and the others have not?
+    * finished team could possible see:
+      * their results
+      * the info for the next stage with the start button disabled
+      * the status of the other teams (live leaderboard)
 
 ## Future
 
