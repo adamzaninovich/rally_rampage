@@ -8,8 +8,8 @@ $redbg:         #FB2025;
 $greenbg:       #2EC22D;
 $bluebg:        #2084F5;
 $greybg:        #DEDEDE;
-$background:    #ffffff;
-$header:        #EEEEEE;
+$background:    #FFFFFF;
+$header:        #F7F7F7;
 $header-border: #A2A2A2;
 $text-light:    #7B7B7B;
 $text:          #000000;
@@ -22,15 +22,19 @@ body {
   background: $background;
   text-align: center;
   font-family: 'Helvetica Neue Ultra Light', 'Helvetica Neue', helvetica, sans;
+  font: -apple-system-body;
   font-weight: 200;
   color: $text;
   padding: 0;
   p { margin: 10px 0; }
   h1,h2 {
+    font: -apple-system-headline1;
     font-weight: 200;
     margin: 20px 0;
   }
   nav {
+    position: -webkit-sticky;
+    top: 0;
     padding: 10px 0;
     background: $header;
     color: $text;
@@ -69,7 +73,7 @@ body {
     margin-bottom: 10px;
     border-radius: 5px;
     padding: 20px 0;
-    font-size: 1.5em;
+    font-size: 1.2em;
     color: $text;
     background-color: $greybg;
     &.team { }
