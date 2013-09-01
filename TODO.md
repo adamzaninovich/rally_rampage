@@ -3,14 +3,17 @@
 ## Immediate
 
 * as a rally team, I want to be able to start a stage
-  * Acceptance Criteria
+  * acceptance criteria
     1. js objects correctly initialize an unstarted stage
     2. pressing the start button sends an ajax request to the server
     3. a callback is received with the start time and end time
     4. the timer is started
 
 * as a rally team, I want to be able to open the app mid-stage
-  
+  * acceptance criteria
+    1. js objects correctly initialize a started stage
+    2. page is served with start and end times
+    2. timer is correct
 
 * figure out how to construct js objects before stage has been started
 * start stage button (ajax request + update timer)
