@@ -67,8 +67,9 @@ describe Stage do
       result.update_attributes! start_time: start_time
       stage.to_json_for_team(team).should == {
         stage_type: 'ideal_time',
-        start_time: start_time.to_i,
-        end_time: start_time.to_i + 1.hour
+        start_time: (start_time.to_f*1000).to_i,
+        end_time: ((start_time + 1.hour).to_f*1000).to_i,
+        finish_time: 0
       }.to_json
     end
   end
