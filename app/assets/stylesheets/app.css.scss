@@ -1,21 +1,35 @@
 // Place all the styles related to the static controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
+* { margin: 0; }
+html, body { height: 100%; }
 body {
   text-align: center;
-  font-family: 'Helvetica Neue', helvetica, sans;
+  font-family: 'Helvetica Neue Ultra Light', 'Helvetica Neue', helvetica, sans;
   font-weight: 200;
   color: #222;
   padding: 0;
-  margin: 0;
+  p { margin: 10px 0; }
   h1,h2 {
     font-weight: 200;
+    margin: 20px 0;
+  }
+  nav {
+    padding: 10px 0;
+    background: #fafafa;
+    color: #222;
+    border-bottom: solid 1px #eee;
+    h1#logo {
+      margin: 0;
+      font-size: 1em;
+      font-weight: normal;
+      a {
+        color: #222;
+        text-decoration: none;
+      }
+    }
   }
   h1 {
-    font-size: 1.5em;
-  }
-  h2 {
     font-size: 2.5em;
   }
   #timer {
@@ -23,25 +37,25 @@ body {
     color: #222;
     background-color: #fff;
   }
-  .hidden { display: none; }
+  .button-list {
+    &.fixed {
+      width: 100%;
+      position: absolute;
+      bottom: 0px;
+    }
+  }
   .button {
     display: block;
     text-decoration: none;
-    margin-left: 10px;
-    margin-right: 10px;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-bottom: 10px;
     border-radius: 5px;
-    padding: 30px 0;
+    padding: 20px 0;
     font-size: 1.5em;
     color: #222;
     background-color: #eee;
-    margin-bottom: 10px;
     &.team { }
-    &.fixed {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-    }
     &.start, &.next {
       color: #fff;
       background-color: #09f;
