@@ -1,13 +1,29 @@
 // Place all the styles related to the static controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+// colors
+
+$redbg:         #FB2025;
+$greenbg:       #2EC22D;
+$bluebg:        #2084F5;
+$greybg:        #DEDEDE;
+$background:    #ffffff;
+$header:        #EEEEEE;
+$header-border: #A2A2A2;
+$text-light:    #7B7B7B;
+$text:          #000000;
+
+// styles
+
 * { margin: 0; }
 html, body { height: 100%; }
 body {
+  background: $background;
   text-align: center;
   font-family: 'Helvetica Neue Ultra Light', 'Helvetica Neue', helvetica, sans;
   font-weight: 200;
-  color: #222;
+  color: $text;
   padding: 0;
   p { margin: 10px 0; }
   h1,h2 {
@@ -16,15 +32,15 @@ body {
   }
   nav {
     padding: 10px 0;
-    background: #fafafa;
-    color: #222;
-    border-bottom: solid 1px #eee;
+    background: $header;
+    color: $text;
+    border-bottom: solid 1px $header-border;
     h1#logo {
       margin: 0;
       font-size: 1em;
       font-weight: normal;
       a {
-        color: #222;
+        color: $text;
         text-decoration: none;
       }
     }
@@ -34,12 +50,13 @@ body {
   }
   #timer {
     padding: 10px 0;
-    color: #222;
-    background-color: #fff;
+    color: $text;
+    background-color: $background;
   }
   .button-list {
+    width: 100%;
+    padding-bottom: 10px;
     &.fixed {
-      width: 100%;
       position: absolute;
       bottom: 0px;
     }
@@ -53,24 +70,24 @@ body {
     border-radius: 5px;
     padding: 20px 0;
     font-size: 1.5em;
-    color: #222;
-    background-color: #eee;
+    color: $text;
+    background-color: $greybg;
     &.team { }
     &.start, &.next {
-      color: #fff;
-      background-color: #09f;
+      color: $background;
+      background-color: $bluebg;
     }
     &.finish {
-      color: #fff;
-      background-color: #0f9;
+      color: $background;
+      background-color: $greenbg;
     }
   }
   &.warning {
-    color: #fff;
-    background-color: #b00;
+    color: $background;
+    background-color: $redbg;
     .button.finish {
-      color: #222;
-      background-color: #fff;
+      color: $text;
+      background-color: $background;
     }
   }
   ul#teams {
