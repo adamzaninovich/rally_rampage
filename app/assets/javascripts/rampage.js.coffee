@@ -9,15 +9,16 @@ Rampage =
     @continue_stage()
   continue_stage: () ->
     if @stage.start_time is 0
-      # stage is not yet started
       console.log 'waiting'
       @timer.el.text 'Press Start to Begin the Stage'
       @start_button.show()
-    else
-      # stage is started
+    else if @stage.finish_time is 0
       console.log 'continuing'
       @timer.run()
       @finish_button.show()
+    else
+      console.log 'ending'
+      @finish_stage @stage.start_time, @stage.finish_time
   start_stage: (start_time, end_time) ->
     console.log 'starting'
     @start_button.hide()
@@ -26,15 +27,17 @@ Rampage =
     @timer.set()
     @timer.run()
     @finish_button.show()
-  #finish_stage: () ->
-    #finish_button.on 'click', (e) ->
-      #e.preventDefault()
-      #time = timer.stop()
-      #finish_button.hide()
-      #$('#stage-finished').show()
-      #$('.button.next').show()
-      ## send the time and geo to the server
-      #Geolocation.get_location()
+  finish_stage: (start_time, finish_time) ->
+    console.log 'finishing'
+    @stage.start_time = start_time
+    @stage.finish_time = finish_time
+    @finish_button.hide()
+    @timer.stop()
+    @timer.display_final start_time, finish_time
+    $('#stage-finished').show()
+    $('.button.next').show()
+    # send the time and geo to the server
+    #Geolocation.get_location()
   overtime: (is_overtime=true) ->
     if is_overtime
       $('body').addClass 'warning'

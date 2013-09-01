@@ -11,6 +11,13 @@ class StagesController < ApplicationController
     result.start!
   end
 
+  # POST /stages/:stage_id/finish
+  def finish
+    @stage = Stage.find params[:stage_id]
+    result = @stage.results_for_team current_team
+    result.finish!
+  end
+
   # GET /stages/current
   def current
     if current_team

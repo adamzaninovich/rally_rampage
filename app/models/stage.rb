@@ -17,9 +17,10 @@ class Stage < ActiveRecord::Base
 
   def to_json_for_team team
     data = {}
-    data[:stage_type] = stage_type
-    data[:start_time] = start_time_for_team(team).to_i
-    data[:end_time]   = ideal_end_time_for_team(team).to_i if ideal_time?
+    data[:stage_type]  = stage_type
+    data[:start_time]  = (start_time_for_team(team).to_f*1000).to_i
+    data[:end_time]    = (ideal_end_time_for_team(team).to_f*1000).to_i if ideal_time?
+    data[:finish_time] = (finish_time_for_team(team).to_f*1000).to_i
     data.to_json
   end
 
@@ -32,7 +33,7 @@ class Stage < ActiveRecord::Base
   end
 
   def ideal_end_time_for_team team
-    if ideal_time? && results_for_team(team).in_progress?
+    if ideal_time? && !results_for_team(team).not_started?
       start_time_for_team(team) + ideal_time
     else
       0

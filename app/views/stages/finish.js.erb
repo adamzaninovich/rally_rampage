@@ -1,0 +1,4 @@
+var start_time = <%= js_time @stage.start_time_for_team current_team %>,
+    finish_time = <%= js_time @stage.finish_time_for_team current_team %>;
+Rampage.finish_stage(start_time, finish_time);
+
