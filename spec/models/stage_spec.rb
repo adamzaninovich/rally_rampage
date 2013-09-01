@@ -84,7 +84,17 @@ describe Stage do
   end
 
   describe '#ideal_end_time_for_team' do
-    it "returns the correct end_time" do
+    it "returns 0 when the stage is not ideal_time" do
+      start_time = Time.now
+      team = Team.create!
+      stage = Stage.create! stage_type: 'speed'
+      result = StageResult.create! stage: stage, team: team
+      result.start!
+      result.update_attributes! start_time: start_time
+      stage.ideal_end_time_for_team(team).should == 0
+    end
+
+    it "returns the correct end_time when the stage is ideal_time" do
       start_time = Time.now
       team = Team.create!
       stage = Stage.create! stage_type: 'ideal_time', ideal_time: 1.hour
