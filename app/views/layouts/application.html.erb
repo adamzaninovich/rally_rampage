@@ -32,11 +32,23 @@
 </head>
 <body>
 
-  <h1>Rally Rampage!</h1>
+  <nav>
+    <h1 id="logo">
+      <% if current_team %>
+        <%= link_to "Team #{current_team.name}", current_team %>
+      <% else %>
+        <%= link_to "Rally Rampage!", root_path %>
+      <% end %>
+    </h1>
+  </nav>
 
   <div id="application">
     <%= yield %>
   </div>
+
+  <footer>
+    <%= yield :footer if content_for?(:footer) %>
+  </footer>
 
   <div id="install" style="display:none">
     <div class="top">
