@@ -1,0 +1,5 @@
+var start_time = <%= @stage.start_time_for_team(current_team).to_i %>,
+    end_time = <%= @stage.ideal_end_time_for_team(current_team).to_i %>;
+
+Rampage.start_stage(start_time, end_time);
+

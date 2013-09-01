@@ -3,10 +3,10 @@
   <h2><%= @stage.stage_type.humanize.titleize %></h2>
 </header>
 
-<p>
+<p id="stage-info">
   <% if @stage.ideal_time? %>
     The ideal time of this stage is <%= render_time_in_hms @stage.ideal_time %>.
-    </p><p>
+    <br>
     The team closest to that time wins!
   <% elsif @stage.speed? %>
     Drive to the finishing point in as little time as possible!
@@ -20,21 +20,23 @@
   <p>You have completed the stage with a time of</p>
 </div>
 
-<h2 id="timer" data-stage="<%= @stage.to_json_for_team current_team %>">
-  Press Start to Begin the Stage
-</h2>
+<h1 id="timer" data-stage="<%= @stage.to_json_for_team current_team %>">
+  Initializing...
+</h1>
 
-<div id="overtime" style="display:none;">
-  <h2>Warning!</h2>
-  <p>
-    You are now over the ideal time of <%= render_time_in_hms @stage.ideal_time %>!
-    Please proceed to the next checkpoint at your earliest convienience.
-  </p>
-</div>
+<% if @stage.ideal_time? %>
+  <div id="overtime" style="display:none;">
+    <h2>Warning!</h2>
+    <p>
+      You are now over the ideal time of <%= render_time_in_hms @stage.ideal_time %>!
+      Please proceed to the next checkpoint at your earliest convienience.
+    </p>
+  </div>
+<% end %>
 
-<div class="button-list fixed">
-  <%= link_to "Start Stage", stage_start_path(@stage), class: "button start", style: "display:none;", remote: true %>
-  <%= link_to "Finish Stage", stage_finish_path(@stage), class: "button finish", style: "display:none;", remote: true %>
+<div class="button-list pushed">
+  <%= link_to "Start Stage", stage_start_path(@stage), class: "button start", style: "display:none;", remote: true, method: :post %>
+  <%= link_to "Finish Stage", stage_finish_path(@stage), class: "button finish", style: "display:none;", remote: true, method: :post %>
   <%= link_to "Next Stage", current_stage_path, class: "button next", style: "display:none;" %>
 </div>
 
