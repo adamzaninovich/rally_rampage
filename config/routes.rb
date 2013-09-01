@@ -2,7 +2,8 @@ RallyRampage::Application.routes.draw do
 
   get 'stages/current' => 'stages#current', as: :current_stage
   resources :stages, only: [:index, :show] do
-    post 'done'
+    post 'start'
+    post 'finish'
   end
 
   resources :sessions, only: [:create, :destroy]
