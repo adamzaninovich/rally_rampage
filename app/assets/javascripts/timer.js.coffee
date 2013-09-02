@@ -12,6 +12,7 @@ class Timer
       @time = new Date Rampage.stage.start_time
   run: -> setTimeout @display_time, 10
   stop: ->
+    console.log 'stopping timer'
     @paused = true
     current_time = new Date
     Rampage.overtime false
@@ -20,7 +21,6 @@ class Timer
     else
       elapsed_time = current_time - @time
     elapsed_time
-
   format_time: (time_in_seconds, addition=0)->
     time = new Date time_in_seconds + 28800000 + addition
     pad_numbers = (n)-> if (n<10) then "0#{n}" else "#{n}"
