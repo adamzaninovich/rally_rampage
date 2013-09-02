@@ -5,12 +5,12 @@ puts "Creating Stages"
 Stage.delete_all
 stages = [
   {
-    stage_type: 'ideal_time',
-    ideal_time: (1.minute),
-  },
-  {
     stage_type: 'speed',
     pax_percent: 17.0
+  },
+  {
+    stage_type: 'ideal_time',
+    ideal_time: (1.minute),
   },
   {
     stage_type: 'odometer',
