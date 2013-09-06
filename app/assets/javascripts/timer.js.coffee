@@ -44,6 +44,9 @@ class Timer
         @el.html "- " + @format_time difference, 1000
       else
         @el.html @format_time difference
+    else
+      difference = finish - start
+      @el.html @format_time difference
   display_time: =>
     unless @paused
       current_time = new Date

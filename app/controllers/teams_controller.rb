@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   def index
-    redirect_to current_team if current_team
+    redirect_to current_stage_path if current_team
     @teams = Team.all.order :name
   end
 

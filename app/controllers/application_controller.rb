@@ -4,11 +4,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   def login id
-    session[:team_id] = id
+    cookies.signed[:team_id] = { value: id, expires: 2.days.from_now }
   end
 
   def current_team
-    id = session[:team_id]
+    id = cookies.signed[:team_id]
     if id.present?
       Team.find id
     else
@@ -18,6 +18,6 @@ class ApplicationController < ActionController::Base
   helper_method :current_team
 
   def logout
-    session[:team_id] = nil
+    cookies.delete :team_id
   end
 end
