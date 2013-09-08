@@ -56,6 +56,17 @@ body {
     padding: 10px 0;
     color: $text;
     background-color: $background;
+
+    .time_main {
+      font-size: 1.5em;
+      font-weight: 700;
+    }
+    
+    .time_ms {
+      font-size: 0.75em;
+
+    }
+    
   }
   .button-list {
     width: 100%;

@@ -33,7 +33,8 @@ class Timer
     ms = pad_numbers parseInt(time.getMilliseconds()/10)
     time = "#{m}:#{s}"
     time = if h>0 then "#{h}:#{time}" else time
-    if @show_ms then "#{time}.#{ms}" else time
+    if @show_ms then "<span class='time_main'>#{time}</span><span class='time_ms'>.#{ms}</span>" 
+    else time
   display_final: (start, finish) ->
     if @direction is "down"
       expected = @time - start
