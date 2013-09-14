@@ -31,4 +31,12 @@ class StageResult < ActiveRecord::Base
       update_attributes! finish_time: Time.now
     end
   end
+
+  def result
+    if stage.stage_type == 'ideal_time'
+      (finish_time - start_time - stage.ideal_time).abs
+    else
+      finish_time - start_time
+    end
+  end
 end

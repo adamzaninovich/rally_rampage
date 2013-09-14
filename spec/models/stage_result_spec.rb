@@ -53,4 +53,38 @@ describe StageResult do
       result.finish_time.should be_within(1.second).of Time.now
     end
   end
+
+  describe '#result' do
+    let(:time) { Time.now }
+    context 'when stage is speed' do
+      before { stage.update_attributes stage_type: 'speed' }
+      it "returns the elapsed time" do
+        result.start!
+        result.finish!
+        result.start_time = time
+        result.finish_time = time + 1.minute
+        result.result.should == 60.0
+      end
+    end
+    context "when the stage is ideal time" do
+      before do
+        stage.update_attributes stage_type: 'ideal_time', ideal_time: 1.minute
+        result.start!
+        result.finish!
+        result.start_time = time
+      end
+      it "returns the distance from ideal time" do
+        result.finish_time = time + 1.minute + 5.seconds
+        result.result.should == 5.0
+      end
+      it "returns the distance from ideal time in positive value" do
+        result.finish_time = time + 1.minute - 5.seconds
+        result.result.should == 5.0
+      end
+    end
+    context "when the stage is odometer" do
+      pending
+    end
+  end
+
 end
