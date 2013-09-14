@@ -21,15 +21,16 @@
 </div>
 
 <h1 id="timer" data-stage="<%= @stage.to_json_for_team current_team %>">
-  Initializing...
+  <span class="main">Initializing...</span>
 </h1>
+
 
 <% if @stage.ideal_time? %>
   <div id="overtime" style="display:none;">
     <h2>Warning!</h2>
     <p>
       You are now over the ideal time of <%= render_time_in_hms @stage.ideal_time %>!
-      Please proceed to the next checkpoint at your earliest convienience.
+      Please proceed to the next checkpoint ASAP!
     </p>
   </div>
 <% end %>

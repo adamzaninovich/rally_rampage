@@ -15,7 +15,7 @@ Rampage =
   continue_stage: ->
     if @stage.start_time is 0
       console.log 'waiting'
-      @timer.el.text 'Press Start to Begin the Stage'
+      @timer.el.find('.main').text 'Press Start to Begin the Stage'
       @start_button.show()
     else if @stage.finish_time is 0
       console.log 'continuing'
