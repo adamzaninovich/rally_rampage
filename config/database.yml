@@ -40,3 +40,14 @@ test:
   encoding: unicode
   database: rally_rampage_test
   pool: 5
+
+production:
+  adapter: postgresql
+  encoding: unicode
+  database: rally_rampage_production
+  pool: 5
+  host: localhost
+  port: 5432
+  username: <%= ENV['RALLY_RAMPAGE_USERNAME'] %>
+  password: <%= ENV['RALLY_RAMPAGE_PASSWORD'] %>
+

@@ -6,7 +6,7 @@
 
 ## Setting up the database
 
-1. Install Postgres. For mac, use the [PostgresApp](http://postgresapp.com).
+1. Install Postgres. For mac, use [Postgres.app](http://postgresapp.com).
 2. `bundle install`
-3. Recreate Database: `rake db:create db:migrate db:seed`
+3. Recreate Database: `rake db:create db:migrate db:seed db:test:prepare`
 
