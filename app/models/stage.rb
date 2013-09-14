@@ -11,6 +11,10 @@ class Stage < ActiveRecord::Base
     Stage.order(:order_number).reject(&:finished?).first
   end
 
+  def ordered_results
+    stage_results.sort_by(&:result)
+  end
+
   def finished?
     stage_results.any? && !stage_results.map(&:finished?).include?(false)
   end

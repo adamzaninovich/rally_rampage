@@ -2,28 +2,6 @@ require 'spec_helper'
 
 describe Stage do
 
-  describe '#finished?' do
-    let(:result) { StageResult.create! stage: stage, team: Team.create! }
-    let(:stage) { Stage.create! stage_type: 'speed' }
-    subject { stage }
-
-    context "when all stage_results are finished" do
-      before { result.start! and result.finish! }
-      it { should be_finished }
-    end
-    context "when some stage_results are finished" do
-      before do
-        StageResult.create(stage: stage, team: Team.create).start!
-        result.start! and result.finish!
-      end
-      it { should_not be_finished }
-    end
-    context "when no stage_results are finished" do
-      before { result.start! }
-      it { should_not be_finished }
-    end
-  end
-
   describe '.current' do
     let!(:stages) do
       team = Team.create
@@ -54,6 +32,28 @@ describe Stage do
         end
         Stage.current.should be_nil
       end
+    end
+  end
+
+  describe '#finished?' do
+    let(:result) { StageResult.create! stage: stage, team: Team.create! }
+    let(:stage) { Stage.create! stage_type: 'speed' }
+    subject { stage }
+
+    context "when all stage_results are finished" do
+      before { result.start! and result.finish! }
+      it { should be_finished }
+    end
+    context "when some stage_results are finished" do
+      before do
+        StageResult.create(stage: stage, team: Team.create).start!
+        result.start! and result.finish!
+      end
+      it { should_not be_finished }
+    end
+    context "when no stage_results are finished" do
+      before { result.start! }
+      it { should_not be_finished }
     end
   end
 
@@ -122,6 +122,29 @@ describe Stage do
       stage = Stage.create! stage_type: 'speed'
       results = StageResult.create! team: team, stage: stage
       stage.results_for_team(team).should == results
+    end
+  end
+
+  describe '#ordered_results' do
+    let(:time) { Time.now }
+    let(:team1) { Team.create }
+    let(:team2) { Team.create }
+    let(:team3) { Team.create }
+    let(:stage) { Stage.create stage_type: 'speed' }
+    let(:result1) { StageResult.create stage: stage, team: team1 }
+    let(:result2) { StageResult.create stage: stage, team: team2 }
+    let(:result3) { StageResult.create stage: stage, team: team3 }
+    it 'correctly orders the teams' do
+      [result1, result2, result3].each do |r|
+        r.start!
+        r.finish!
+        r.start_time = time
+      end
+      result1.finish_time = time + 2.minutes
+      result2.finish_time = time + 3.minutes
+      result3.finish_time = time + 1.minute
+      [result1, result2, result3].each(&:save!)
+      stage.ordered_results.should == [result3, result1, result2]
     end
   end
 
