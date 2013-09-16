@@ -6,6 +6,8 @@ RallyRampage::Application.routes.draw do
     post 'finish'
   end
 
+  resources :results, only: [:index]
+
   resources :sessions, only: [:create, :destroy]
   get 'logout', to: 'sessions#destroy', as: :logout
 
